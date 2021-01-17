@@ -7,10 +7,11 @@ public class NBody {
         return radius;
     }
 
-    public static Planet[] readPlanets(String file_name, int lines) {
+    public static Planet[] readPlanets(String file_name) {
         In in = new In(file_name);
         int num = in.readInt();
         double radius = in.readDouble();
+        int lines = 5;
         Planet[] planets = new Planet[lines];
 
         for (int i = 0; i < lines; i++) {
@@ -31,7 +32,7 @@ public class NBody {
         double[] xForces = new double[NumofPlanets];
         double[] yForces = new double[NumofPlanets];
 
-        Planet[] planets = readPlanets(filename, NumofPlanets);
+        Planet[] planets = readPlanets(filename);
         StdDraw.setScale(-2.50e+11, 2.50e+11);
         StdDraw.enableDoubleBuffering();
         while(strat_time < T) {
