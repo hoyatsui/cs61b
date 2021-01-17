@@ -99,8 +99,8 @@ public class Planet{
 
 	}
 
-	public static void draw(Planet planet){
-		StdDraw.picture(planet.xxPos,planet.yyPos,"images/"+planet.imgFileName);
+	public void draw(){
+		StdDraw.picture(this.xxPos, this.yyPos,"images/"+ this.imgFileName);
 	}
 }
 
