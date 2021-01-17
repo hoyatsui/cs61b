@@ -11,10 +11,8 @@ public class NBody {
         In in = new In(file_name);
         int num = in.readInt();
         double radius = in.readDouble();
-        int lines = 5;
-        Planet[] planets = new Planet[lines];
-
-        for (int i = 0; i < lines; i++) {
+        Planet[] planets = new Planet[num];
+        for (int i = 0; i < num; i++) {
             planets[i] = new Planet(in.readDouble(), in.readDouble(), in.readDouble(),
                                     in.readDouble(), in.readDouble(), in.readString());
         }
@@ -25,15 +23,17 @@ public class NBody {
         double T = Double.valueOf(args[0]);
         double dt = Double.valueOf(args[1]);
         String filename = args[2];
-        String background_file = "images/starfield.jpg";
-        int NumofPlanets = 5;
         int strat_time = 0;
+        String background_file = "images/starfield.jpg";
+
+        Planet[] planets = readPlanets(filename);
+
+        StdDraw.setScale(-2.50e+11, 2.50e+11);
+        int NumofPlanets = 5;
 
         double[] xForces = new double[NumofPlanets];
         double[] yForces = new double[NumofPlanets];
 
-        Planet[] planets = readPlanets(filename);
-        StdDraw.setScale(-2.50e+11, 2.50e+11);
         StdDraw.enableDoubleBuffering();
         while(strat_time < T) {
             for(int j = 0; j < NumofPlanets; j++){

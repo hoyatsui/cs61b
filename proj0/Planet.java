@@ -1,20 +1,20 @@
 public class Planet{
-	double xxPos;
-	double yyPos;
-	double xxVel;
-	double yyVel;
-	double mass;
-	String imgFileName;
+	public double xxPos;
+	public double yyPos;
+	public double xxVel;
+	public double yyVel;
+	public double mass;
+	public String imgFileName;
 
 	public Planet(double xP, double yP, double xV,
 				double yV, double m, String img) {
-		xxPos = xP;
-		yyPos = yP;
-		xxVel = xV;
-		yyVel = yV;
-		mass = m;
-		imgFileName = img;
-		// System.out.println("The first constructor initialized 6 instance variables.");
+		this.xxPos = xP;
+		this.yyPos = yP;
+		this.xxVel = xV;
+		this.yyVel = yV;
+		this.mass = m;
+		this.imgFileName = img;
+
 	}
 
 	public Planet(Planet p){
@@ -29,7 +29,7 @@ public class Planet{
 
 	public double calcDistance (Planet p){
 		if (this == p){
-			return 0.0000001;
+			return 0.0;
 		}
 		else {
 			double dx = p.xxPos - this.xxPos;
@@ -51,13 +51,25 @@ public class Planet{
 
 	public double calcForceExertedByX(Planet p){
 		double totalForce = this.calcForceExertedBy(p);
-		double xForce = (totalForce * (p.xxPos - this.xxPos)) / this.calcDistance(p);
+		double distance = 0;
+		if(this == p){
+			distance = 0.0001;
+		}else {
+			distance = this.calcDistance(p);
+		}
+		double xForce = (totalForce * (p.xxPos - this.xxPos)) / distance;
 		return xForce;
 	}
 
 	public double calcForceExertedByY(Planet p){
 		double totalForce = this.calcForceExertedBy(p);
-		double yForce = (totalForce * (p.yyPos - this.yyPos)) / this.calcDistance(p);
+		double distance = 0;
+		if(this == p){
+			distance = 0.0001;
+		}else {
+			distance = this.calcDistance(p);
+		}
+		double yForce = (totalForce * (p.yyPos - this.yyPos)) / distance;
 		return yForce;
 	}
 
@@ -77,15 +89,14 @@ public class Planet{
 		return yNetForce;
 	}
 
-	public Planet update(double time, double xForce, double yForce){
-		double xAcceleration = xForce / this.mass;
-		double yAcceleration = yForce / this.mass;
-		this.xxVel = this.xxVel + xAcceleration * time;
-		this.yyVel = this.yyVel + yAcceleration * time;
-		this.xxPos = this.xxPos + xxVel * time;
-		this.yyPos = this.yyPos + yyVel * time;
+	public void update(double time, double xForce, double yForce){
+		double xAcceleration = xForce / mass;
+		double yAcceleration = yForce / mass;
+		xxVel = xxVel + xAcceleration * time;
+		yyVel = yyVel + yAcceleration * time;
+		xxPos = xxPos + xxVel * time;
+		yyPos = yyPos + yyVel * time;
 
-		return this;
 	}
 
 	public static void draw(Planet[] planets){
