@@ -27,9 +27,9 @@ public class NBody {
         String background_file = "images/starfield.jpg";
 
         Planet[] planets = readPlanets(filename);
-
+        In in = new In(filename);
+        int NumofPlanets = in.readInt();
         StdDraw.setScale(-2.50e+11, 2.50e+11);
-        int NumofPlanets = 5;
 
         double[] xForces = new double[NumofPlanets];
         double[] yForces = new double[NumofPlanets];
@@ -45,7 +45,9 @@ public class NBody {
             }
             StdDraw.clear();
             StdDraw.picture(0,0, background_file);
-            Planet.draw(planets);
+            for(int j = 0; j < NumofPlanets; j++) {
+                Planet.draw(planets[j]);
+            }
             StdDraw.show();
             StdDraw.pause(10);
             strat_time += dt;

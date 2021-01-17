@@ -99,10 +99,8 @@ public class Planet{
 
 	}
 
-	public static void draw(Planet[] planets){
-		for(int i = 0; i < planets.length; i++){
-			StdDraw.picture(planets[i].xxPos, planets[i].yyPos, "images/"+planets[i].imgFileName);
-		}
+	public static void draw(Planet planet){
+		StdDraw.picture(planet.xxPos,planet.yyPos,"images/"+planet.imgFileName);
 	}
 }
 
