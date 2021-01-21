@@ -5,9 +5,9 @@ public class LinkedListDeque<T> {
         StuffNode next;
         StuffNode prev;
 
-        public StuffNode(T item, StuffNode f, StuffNode n) {
+        public StuffNode(T item, StuffNode p, StuffNode n) {
             items = item;
-            prev = f;
+            prev = p;
             next = n;
         }
     }

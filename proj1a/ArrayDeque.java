@@ -3,7 +3,7 @@ public class ArrayDeque<T> {
     private int size;
     private int nextFirst;
     private int nextLast;
-    private int REFACTOR = 10;
+    private int REFACTOR = 2;
 
     /* create an empty list.*/
     public ArrayDeque() {
@@ -24,7 +24,7 @@ public class ArrayDeque<T> {
 //        }
 //    }
 
-    public void resize(int capacity) {
+    private void resize(int capacity) {
         T[] a = (T[]) new Object[capacity];
         if (nextLast > nextFirst) {
             System.arraycopy(items, nextFirst, a, nextFirst, nextLast - nextFirst);
