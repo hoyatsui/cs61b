@@ -3,7 +3,7 @@ public class ArrayDeque<T> {
     private int size;
     private int nextFirst;
     private int nextLast;
-    private int REFACTOR = 2;
+    private double REFACTOR = 1.4;
 
     /* create an empty list.*/
     public ArrayDeque() {
@@ -40,7 +40,7 @@ public class ArrayDeque<T> {
 
     public void addFirst(T x) {
         if (size == items.length) {
-            resize(size * REFACTOR);
+            resize((int) (size * REFACTOR));
         }
         if (nextFirst == 0) {
             nextFirst = items.length - 1;
@@ -53,7 +53,7 @@ public class ArrayDeque<T> {
 
     public void addLast(T x) {
         if (size == items.length) {
-            resize(size * REFACTOR);
+            resize((int) (size * REFACTOR));
         }
         if (nextLast == items.length - 1) {
             items[nextLast] = x;
@@ -76,6 +76,9 @@ public class ArrayDeque<T> {
     }
 
     public  T removeFirst() {
+        if (size == 0) {
+            return null;
+        }
         T temp = items[nextFirst];
         items[nextFirst] = null;
         if (nextFirst == items.length - 1) {
@@ -88,6 +91,9 @@ public class ArrayDeque<T> {
     }
 
     public T removeLast() {
+        if (size == 0) {
+            return null;
+        }
         if (nextLast == 0) {
             nextLast = items.length - 1;
             T temp = items[items.length - 1];

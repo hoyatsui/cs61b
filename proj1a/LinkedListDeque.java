@@ -1,3 +1,5 @@
+
+
 public class LinkedListDeque<T> {
 
     public class StuffNode {
@@ -89,6 +91,16 @@ public class LinkedListDeque<T> {
             temp = temp.next;
         }
         return temp.items;
+    }
 
+    public T getRecursive(int index) {
+        return getRecursiveHelper(index, sentinel).items;
+    }
+
+    private StuffNode getRecursiveHelper(int index, StuffNode n) {
+        if (index == 0) {
+            return n;
+        }
+        return getRecursiveHelper(index - 1, n.next);
     }
 }
