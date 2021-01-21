@@ -88,6 +88,9 @@ public class ArrayDeque<T> {
         }
         size -= 1;
 //        resize(size);
+        if (items.length / 2 >= size) {
+            resize(items.length / 2);
+        }
         return temp;
     }
 
@@ -102,6 +105,9 @@ public class ArrayDeque<T> {
             nextLast = items.length - 1;
             size -= 1;
 //            resize(size);
+            if (items.length / 2 >= size) {
+                resize(items.length / 2);
+            }
             return temp;
         } else {
             T temp = items[nextLast - 1];
@@ -109,6 +115,9 @@ public class ArrayDeque<T> {
             nextLast = nextLast - 1;
             size -= 1;
 //            resize(size);
+            if (items.length / 2 >= size) {
+                resize(items.length / 2);
+            }
             return  temp;
         }
     }
