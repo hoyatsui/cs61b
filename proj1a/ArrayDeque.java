@@ -73,12 +73,12 @@ public class ArrayDeque<T> {
     }
 
     public T get(int index) {
-        if ((nextFirst + index - 1) < items.length) {
-            return items[index - 1 + nextFirst];
+        if ((nextFirst + index) < items.length) {
+            return items[index + nextFirst];
         } else {
             index = index - items.length + nextFirst;
 
-            return items[index - 1];
+            return items[index];
         }
     }
 
