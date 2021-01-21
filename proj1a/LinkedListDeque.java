@@ -84,7 +84,7 @@ public class LinkedListDeque<T> {
     }
 
     public T get(int index) {
-        StuffNode temp = sentinel.next;
+        StuffNode temp = sentinel;
         for (int i = 0; i < index; i++) {
             temp = temp.next;
         }
