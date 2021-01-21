@@ -3,7 +3,7 @@ public class ArrayDeque<T> {
     private int size;
     private int nextFirst;
     private int nextLast;
-    private double REFACTOR = 1.4;
+    private double REFACTOR = 2;
 
     /* create an empty list.*/
     public ArrayDeque() {
@@ -27,13 +27,20 @@ public class ArrayDeque<T> {
     private void resize(int capacity) {
         T[] a = (T[]) new Object[capacity];
         if (nextLast > nextFirst) {
-            System.arraycopy(items, nextFirst, a, nextFirst, nextLast - nextFirst);
+            System.arraycopy(items, nextFirst, a, nextFirst, size);
         } else {
             System.arraycopy(items, 0, a, 0, nextLast);
             System.arraycopy(items, nextFirst, a, nextFirst + capacity - items.length,
-                    items.length - nextFirst);
-            nextFirst = nextLast + capacity - items.length;
+                    size - nextLast);
+            nextFirst = nextFirst + capacity - items.length;
         }
+
+//        } else {
+//            System.arraycopy(items, 0, a, 0, nextLast);
+//            System.arraycopy(items, nextFirst, a, nextFirst - capacity + items.length,
+//                    size - nextLast);
+//            nextFirst = nextLast + items.length - capacity;
+//        }
 
         items = a;
     }
@@ -88,9 +95,9 @@ public class ArrayDeque<T> {
         }
         size -= 1;
 //        resize(size);
-//        if (items.length / 2 >= size) {
-//            resize(items.length / 2);
-//        }
+        if ((items.length / 4 >= size) && items.length > 16) {
+            resize(items.length / 2);
+        }
         return temp;
     }
 
@@ -105,9 +112,9 @@ public class ArrayDeque<T> {
             nextLast = items.length - 1;
             size -= 1;
 //            resize(size);
-//            if (items.length / 2 >= size) {
-//                resize(items.length / 2);
-//            }
+            if ((items.length / 4 >= size) && items.length > 16) {
+                resize(items.length / 2);
+            }
             return temp;
         } else {
             T temp = items[nextLast - 1];
@@ -115,9 +122,9 @@ public class ArrayDeque<T> {
             nextLast = nextLast - 1;
             size -= 1;
 //            resize(size);
-//            if (items.length / 2 >= size) {
-//                resize(items.length / 2);
-//            }
+            if ((items.length / 4 >= size) && items.length > 16) {
+                resize(items.length / 2);
+            }
             return  temp;
         }
     }
