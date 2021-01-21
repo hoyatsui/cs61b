@@ -66,12 +66,12 @@ public class ArrayDeque<T> {
     }
 
     public T get(int index) {
-        if ((nextFirst + index) < items.length) {
-            return items[index + nextFirst];
+        if ((nextFirst + index - 1) < items.length) {
+            return items[index - 1 + nextFirst];
         } else {
             index = index - items.length + nextFirst;
 
-            return items[index];
+            return items[index - 1];
         }
     }
 
@@ -88,9 +88,9 @@ public class ArrayDeque<T> {
         }
         size -= 1;
 //        resize(size);
-        if (items.length / 2 >= size) {
-            resize(items.length / 2);
-        }
+//        if (items.length / 2 >= size) {
+//            resize(items.length / 2);
+//        }
         return temp;
     }
 
@@ -105,9 +105,9 @@ public class ArrayDeque<T> {
             nextLast = items.length - 1;
             size -= 1;
 //            resize(size);
-            if (items.length / 2 >= size) {
-                resize(items.length / 2);
-            }
+//            if (items.length / 2 >= size) {
+//                resize(items.length / 2);
+//            }
             return temp;
         } else {
             T temp = items[nextLast - 1];
@@ -115,9 +115,9 @@ public class ArrayDeque<T> {
             nextLast = nextLast - 1;
             size -= 1;
 //            resize(size);
-            if (items.length / 2 >= size) {
-                resize(items.length / 2);
-            }
+//            if (items.length / 2 >= size) {
+//                resize(items.length / 2);
+//            }
             return  temp;
         }
     }
