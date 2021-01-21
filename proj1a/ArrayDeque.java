@@ -87,7 +87,7 @@ public class ArrayDeque<T> {
             nextFirst += 1;
         }
         size -= 1;
-        resize(size);
+//        resize(size);
         return temp;
     }
 
@@ -108,7 +108,7 @@ public class ArrayDeque<T> {
             items[nextLast - 1] = null;
             nextLast = nextLast - 1;
             size -= 1;
-            resize(size);
+//            resize(size);
             return  temp;
         }
     }
