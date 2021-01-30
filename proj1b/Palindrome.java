@@ -121,11 +121,6 @@ public class Palindrome {
             return true;
         }
         Deque<Character> deque = wordToDeque(word);
-//        Deque<Character> deque2 = new LinkedListDeque<>();
-//        for (int i = 0; i < word.length(); i++) {
-//            Character letter = word.charAt(i);
-//            deque2.addFirst(letter);
-//        }
         int times = word.length();
         if ((times % 2) != 0) {
             for (int i = 0; i < ((times - 1) / 2); i++) {
@@ -141,13 +136,6 @@ public class Palindrome {
             }
         }
         return true;
-
-//        for (int i = 0; i < word.length(); i++) {
-//            if (deque.removeLast() != deque2.removeLast()) {
-//                return false;
-//            }
-//        }
-//        return true;
     }
 
     public boolean isPalindrome(String word, CharacterComparator cc) {
