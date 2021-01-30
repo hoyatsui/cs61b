@@ -1,7 +1,7 @@
 
 public class Palindrome {
     /** A class for palindrome operations. */
-    static class LinkedListDeque<T> implements Deque<T> {
+    private static class LinkedListDeque<T> implements Deque<T> {
 
         private class StuffNode {
             T items;
@@ -121,30 +121,46 @@ public class Palindrome {
             return true;
         }
         Deque<Character> deque = wordToDeque(word);
-        Deque<Character> deque2 = new LinkedListDeque<>();
-        for (int i = 0; i < word.length(); i++) {
-            Character letter = word.charAt(i);
-            deque2.addFirst(letter);
+//        Deque<Character> deque2 = new LinkedListDeque<>();
+//        for (int i = 0; i < word.length(); i++) {
+//            Character letter = word.charAt(i);
+//            deque2.addFirst(letter);
+//        }
+        int times = word.length();
+        if ((times % 2) != 0) {
+            for (int i = 0; i < ((times - 1) / 2); i++) {
+                if (deque.removeFirst() != deque.removeLast()) {
+                    return false;
+                }
+            }
+            return true;
         }
-        for (int i = 0; i < word.length(); i++) {
-            if (deque.removeLast() != deque2.removeLast()) {
+        for (int i = 0; i < times / 2; i++) {
+            if (deque.removeFirst() != deque.removeLast()) {
                 return false;
             }
         }
         return true;
+
+//        for (int i = 0; i < word.length(); i++) {
+//            if (deque.removeLast() != deque2.removeLast()) {
+//                return false;
+//            }
+//        }
+//        return true;
     }
 
     public boolean isPalindrome(String word, CharacterComparator cc) {
-        Deque<Character> deque = (LinkedListDeque<Character>) wordToDeque(word);
+        Deque<Character> deque = wordToDeque(word);
         if ((word.length() % 2) != 0) {
-            for (int i = 0; i < (word.length() - 1) % 2; i++) {
+            for (int i = 0; i < (word.length() - 1) / 2; i++) {
                 if (!cc.equalChars(deque.removeFirst(), deque.removeLast())) {
                     return false;
                 }
             }
             return true;
         } else {
-            for (int i = 0; i < word.length() % 2; i++) {
+            for (int i = 0; i < word.length() / 2; i++) {
                 if (!cc.equalChars(deque.removeFirst(), deque.removeLast())) {
                     return false;
                 }
