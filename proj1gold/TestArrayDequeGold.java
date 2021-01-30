@@ -7,7 +7,7 @@ public class TestArrayDequeGold {
     public void testStudentArrayAddFirstRemoveLast() {
         StudentArrayDeque<Integer> sad = new StudentArrayDeque<>();
         ArrayDequeSolution<Integer> ads = new ArrayDequeSolution<>();
-
+        // AddFirst
         for (int i = 0; i < 10; i++) {
             Integer number = StdRandom.uniform(0, 10);
             sad.addFirst(number);
@@ -20,6 +20,7 @@ public class TestArrayDequeGold {
                     + ", and we got: " + actual, expected, actual);
         }
 
+        // Remove Last
         for(int i = 0; i < 10; i++) {
             Integer actual = sad.removeLast();
             Integer expected = ads.removeLast();
@@ -53,6 +54,4 @@ public class TestArrayDequeGold {
                     + ", and we got: " + actual, expected, actual);
         }
     }
-
-
 }
