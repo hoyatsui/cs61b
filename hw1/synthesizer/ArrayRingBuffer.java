@@ -26,6 +26,7 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
      * throw new RuntimeException("Ring buffer overflow"). Exceptions
      * covered Monday.
      */
+    @Override
     public void enqueue(T x) {
         if (ifFull()) {
             throw new RuntimeException("Ring buffer overflow");
@@ -44,6 +45,7 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
      * throw new RuntimeException("Ring buffer underflow"). Exceptions
      * covered Monday.
      */
+    @Override
     public T dequeue() {
         if (isEmpty()) {
             throw new RuntimeException("Ring buffer underflow");
@@ -63,6 +65,7 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
     /**
      * Return oldest item, but don't remove it.
      */
+    @Override
     public T peek() {
         if (isEmpty()) {
             throw new RuntimeException("Ring buffer underflow");
